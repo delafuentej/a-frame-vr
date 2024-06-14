@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+     <!-- UPDATE YOUR VIDEO'S ID -->
+     <script>
+		AFRAME.registerComponent('play-pause', {
+			init: function () {
+				var myVideo = document.querySelector('#bg-video');
+				var videoControls = document.querySelector('#videoControls');
+				this.el.addEventListener('click', function () {
+					if (myVideo.paused) {
+						myVideo.play();
+						videoControls.setAttribute('src', '#pause');
+					} else {
+						myVideo.pause();
+						videoControls.setAttribute('src', '#play');
+					}
+				});
+			}
+		});
+	</script>
+    <title>Video2</title>
+</head>
+<body>
+    <a-scene>
+        <!-- Asset Management System -->
+        <!-- DOWNLOAD, PRELOAD YOUR VIDEO, AND UPDATE ITS ID AND FILE NAME -->
+        <a-assets>
+        	<img id="play" src="./assets/play.png">
+        	<img id="pause" src="./assets/pause.png">
+        	<video id="bg-video" src="./assets/video-background.mp4" loop="true" crossorigin="anonymous"></video>
+        </a-assets>
+		
+		<!-- Camera -->
+		<a-camera>
+			<a-cursor></a-cursor>
+		</a-camera>
+		
+		<!-- Video 16:9 -->
+		<!-- UPDATE YOUR VIDEO'S ID -->
+		<a-video src="#bg-video" width="8" height="4.5" position="0 3 -9"></a-video>
+            
+			<!-- Play / Pause -->
+		<a-image id="videoControls" src="#play" position="0 1.5 -4.9" scale="0.5 0.5 0.5" play-pause>
+		</a-image>
+		
+    </a-scene>
+    
+</body>
+</html>
